@@ -6,11 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class MyAnagrams {
+import static jdk.nashorn.internal.objects.Global.print;
 
+public class MyAnagrams {
     private static void CreateFile() {
         File myObj = new File("filename.txt");
-
         try {
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
@@ -23,7 +23,6 @@ public class MyAnagrams {
         }
     }
 
-
     private static void WriteToFile() {
         try {
             FileWriter myWriter = new FileWriter("filename.txt");
@@ -33,14 +32,14 @@ public class MyAnagrams {
                     "race\n" +
                     "care\n" +
                     "acre\n" +
-                    "bee");
+                    "bee\n" +
+                    "eeb");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
     private static String[] ReadFile() {
@@ -61,16 +60,11 @@ public class MyAnagrams {
         return words;
     }
 
-
     private static void printAnagrams(String arr[]) {
-
         HashMap<String, List<String>> map = new HashMap<>();
-
         for (int i = 0; i < arr.length; i++) {
-
             String word = arr[i];
             char[] letters = word.toCharArray();
-
             Arrays.sort(letters);
             String newWord = new String(letters);
 
@@ -85,7 +79,7 @@ public class MyAnagrams {
         for (String s : map.keySet()) {
             List<String> values = map.get(s);
             if (values.size() > 1) {
-                System.out.print(values);
+              System.out.println(values.toString().replace("[","").replace("]","").replace(",",""));
             }
         }
     }
@@ -93,7 +87,6 @@ public class MyAnagrams {
     public static void main(String[] args) {
         CreateFile();
         WriteToFile();
-
         String[] words = ReadFile();
         printAnagrams(words);
     }
