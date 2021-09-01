@@ -31,13 +31,14 @@ public class SearchAnagrams {
             }
         }
 
-       // System.out.println(map.keySet());
         for (String s : map.keySet()) {
             List<String> values = map.get(s);
 
             if (values.size() > 1) {
 
-                values = Arrays.asList(sortStringArray(values.toArray(new String[0])));
+//                values = Arrays.asList(sortStringArray(values.toArray(new String[0])));
+//                values = Arrays.asList();
+//                Arrays.parallelSort(values.toArray(new String[0]));
 
                 System.out.print( s + " - " );
 

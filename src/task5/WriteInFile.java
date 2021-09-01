@@ -1,25 +1,23 @@
 package task5;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import static java.nio.file.Path.*;
 
 public class WriteInFile {
 
-    public void fileWriter() throws IOException {
-        WordGenerator wordGenerator = new WordGenerator();
+    public static void writeWordsInFile(int number, String fileName) throws IOException {
 
-        String fileName = "src\\\\task4\\\\filename.txt";
-        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(of(fileName))) {
-            for (long i =0; i < 3_000_000; i++){
-                String word = wordGenerator.generateRandomWords(1);
-                bufferedWriter.write(word + "\n");
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (int i = 0; i < number; i++) {
+                writer.write(WordGenerator.generateRandomWords() + "\n");
             }
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
+    public static void main(String[] args) {
+
+    }
 }
